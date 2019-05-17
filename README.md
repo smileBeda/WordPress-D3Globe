@@ -5,7 +5,7 @@ Invoke the globe anywhere in Text Editor with `[D3-Globe]`
 
 Loads all necessary scripts only where used.
 
-Freely interpreted from planetary.js and other D3 based tools.
+Freely interpreted from [Planteray JS](http://planetaryjs.com) and [D3.js](https://d3js.org) based tools.
 Can be activated like any other WordPress Plugin saving the hassle of custom coding such templates.
-Can be customized in JS `code maps-globus-custom.js`
+Can be customized in the custom JS file of the plugin.
 As always, work in progress and on your own responsibility.
