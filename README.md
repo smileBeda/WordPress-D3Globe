@@ -9,3 +9,7 @@ Freely interpreted from [Planteray JS](http://planetaryjs.com) and [D3.js](https
 Can be activated like any other WordPress Plugin saving the hassle of custom coding such templates.
 Can be customized in the custom JS file of the plugin.
 As always, work in progress and on your own responsibility.
+
+See a Demo [here](https://www.tukutoi.com/globe-maps/).
+
+Also as usual remove the darn `master` from the Plugins main folder name, which GIT adds to all downloaded folders before you uploade the plugin to your site.
