@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 function countries_visited(){
 	$countries_visited = get_posts();
-	//Etc
+	//Etc could be a view returning this array ["704", "116", "764", "76", "604", "484", "840"]
 }
 
 function js_php_api(){
@@ -25,13 +25,12 @@ function enqueue_tmg_scripts() {
 		"https://d3js.org/topojson.v2.min.js", 
 		"https://bl.ocks.org/mbostock/raw/7ea1dde508cec6d2d95306f92642bc42/6aac691494f752142a67cc43c51a0fd09896dbd4/versor.js"
 	];
-	$my = implode("></script><script src=", $scripts_array_urls);
-	$outmy = "<script src=" . $my. "></script>";
-	// foreach ($scripts_array_urls as $scripts_array_url) {
-	// 	$script_srcs .= "<script src=" . $scripts_array_url . "></script>";
-	// }
 
-	return $outmy;
+	$urls_string = implode("></script><script src=", $scripts_array_urls);
+	$urls_string_finished = "<script src=" . $urls_string . "></script>";
+
+	return $urls_string_finished;
+
 
 }
 
