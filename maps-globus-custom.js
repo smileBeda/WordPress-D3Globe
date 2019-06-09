@@ -1,7 +1,9 @@
-// ms to wait after dragging before auto-rotating
+var siteURL = php_api_object.siteURL
+var pageSlug = php_api_object.page_slug
+// // ms to wait after dragging before auto-rotating
 var rotationDelay = 2000
 // scale of the globe (not the canvas element)
-var scaleFactor = 0.8
+var scaleFactor = 0.6
 var w = 960;
 var h = 500;
 var scl = Math.min(w, h)/2.5; 
@@ -10,15 +12,15 @@ var degPerSec = 6
 // start angles
 var angles = { x: -20, y: 40, z: 0}
 // colors
-var colorWater = '#0055FF'
-var colorLand = 'grey'
-var colorGraticule = 'transparent'
-  
-  var colorCountry = 'green'
+var colorWater = 'blue' //use php_api_object.VAR
+var colorLandBorder = 'red' //use php_api_object.VAR
+var colorLand = 'grey' //use php_api_object.VAR
+var colorGraticule = 'transparent' //use php_api_object.VAR
+var colorCountry = 'green' //use php_api_object.VAR
+var colorCountryNotVisited = 'white' //use php_api_object.VAR
+var colorCountryVisited = 'red' //use php_api_object.VAR
 var link = ''
-var currentpostfield = ["704", "116", "764"]; 
-var colorCountryNotVisited = 'white'
-var colorCountryVisited = 'red'
+var currentpostfield = ["704", "116", "764", "76", "604", "484", "840"] //use php_api_object.VAR
 
 function mouseOver() {
   stopRotation()
@@ -37,8 +39,7 @@ function onCountryClick(){
   }
 
   if (currentpostfield.includes(country.id) == true) {
-    var link = "http://humanofearth.mamp/country/" + (country && country.name)
-    //console.log(link)
+    var link = siteURL + "/" + pageSlug + "/" + (country && country.name)
   	window.open(link)
   }
 }
@@ -125,26 +126,32 @@ function dragended() {
 }
 
 function render() {
-  context.clearRect(0, 0, width, height)
-  fill(water, colorWater)
-  stroke(graticule, colorGraticule)
-  fill(land, colorLand)
 
-  
-  var namesmy = arrayColumn(countries.features, 'id');
-  //console.log(namesmy);
-  function arrayColumn(array, columnName) {
-    return array.map(function(value,index) {
-        return value[columnName];
-    })
-}
-  if (currentpostfield.filter(value => namesmy.includes(value))){
-    	//we are true, but cannot yet address the mathicn countries only.
-  }
-  
+  context.clearRect(0, 0, width, height)
+
+  fill(water, colorWater)
+  //stroke(graticule, colorGraticule)
+  stroke(countries, colorLandBorder)
+
+  var filteredFeatures = countries.features.filter(function(feature) {
+	return currentpostfield.includes(feature.id)
+  })
+
+  var nonfilteredFeatures = countries.features.filter(function(feature) {
+	return !currentpostfield.includes(feature.id)
+  })
+
+  filteredFeatures.forEach(function(entry) {
+    fill(entry, colorCountryVisited)
+  });
+
+  nonfilteredFeatures.forEach(function(entry) {
+    fill(entry, colorLand)
+  });
+
   if (currentCountry) {
 	if(currentpostfield.includes(currentCountry.id)== true){
-  		fill(currentCountry, colorCountry)
+  	  fill(currentCountry, colorCountry)
 	}
   }
 }
@@ -176,7 +183,7 @@ function rotate(elapsed) {
 }
 
 function loadData(cb) {
-  d3.json('http://humanofearth.mamp/110m.json', function(error, world) {
+  d3.json( php_api_object.siteURL += '/wp-content/plugins/D3-Globe-Rendering-for-WordPress/110m.json', function(error, world) {
     if (error) throw error
     d3.tsv('https://gist.githubusercontent.com/mbostock/4090846/raw/07e73f3c2d21558489604a0bc434b3a5cf41a867/world-country-names.tsv', function(error, countries) {
       if (error) throw error
@@ -185,7 +192,6 @@ function loadData(cb) {
   })
 }
 
-// https://github.com/d3/d3-polygon
 function polygonContains(polygon, point) {
   var n = polygon.length
   var p = polygon[n - 1]
@@ -200,8 +206,7 @@ function polygonContains(polygon, point) {
   }
   return inside
 }
-
-                                          
+                                       
 function mousemove() {
   var c = getCountry(this)
   if (!c) {
@@ -231,16 +236,10 @@ function getCountry(event) {
   })
 }
 
-
-//
-// Initialization
-//
-
 setAngles()
                                            
 function zoomed() {
 	projection.scale(d3.event.transform.translate(projection).k * scl)
-	//map.selectAll("path").attr("d", path)
 }
                                            
 canvas
@@ -256,7 +255,6 @@ canvas
 	.on("zoom", zoomed)
   )
       
-
 loadData(function(world, cList) {
   land = topojson.feature(world, world.objects.land)
   countries = topojson.feature(world, world.objects.countries)
@@ -265,7 +263,5 @@ loadData(function(world, cList) {
   window.addEventListener('resize', scale)
   scale()
  
-autorotate = d3.timer(rotate)
-                                           
-
+  autorotate = d3.timer(rotate)
 })
