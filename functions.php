@@ -43,11 +43,11 @@ function return_tmg_canvas() {
 
 function load_tmg_customized_script() {
 
-	wp_register_script( 'maps_custom_globus', plugin_dir_url( 'D3-Globe-Rendering-for-WordPress.php' ) . '/D3-Globe-Rendering-for-WordPress/maps-globus-custom.js' );
+	wp_register_script( 'maps_custom_globus', plugin_dir_url( 'D3-Globe-Rendering-for-WordPress.php' ) . '/D3-Globe-Rendering-for-WordPress/maps-globus-custom.js', array("jquery") );
  
 	// Localize the script with new data
 	wp_localize_script( 'maps_custom_globus', 'php_api_object', js_php_api() );
-	wp_enqueue_script( 'maps_custom_globus', plugin_dir_url( 'D3-Globe-Rendering-for-WordPress.php' ) . '/D3-Globe-Rendering-for-WordPress/maps-globus-custom.js', array(), 1.0, false );
+	wp_enqueue_script( 'maps_custom_globus', plugin_dir_url( 'D3-Globe-Rendering-for-WordPress.php' ) . '/D3-Globe-Rendering-for-WordPress/maps-globus-custom.js', array("jquery"), 1.0, false );
 
 }
 
