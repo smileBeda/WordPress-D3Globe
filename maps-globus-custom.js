@@ -4,24 +4,23 @@ var pageSlug = php_api_object.page_slug
 var rotationDelay = 2000
 // scale of the globe (not the canvas element)
 var scaleFactor = 0.6
-var w = 960;
-var h = 500;
-var scl = Math.min(w, h)/2.5; 
+var w = jQuery(window).width()
+var h = jQuery(window).height()
+var scl = Math.min(w, h)/2.8; 
 // autorotation speed
 var degPerSec = 6
 // start angles
 var angles = { x: -20, y: 40, z: 0}
-// colors
-var colorWater = 'blue' //use php_api_object.VAR
-var colorLandBorder = 'red' //use php_api_object.VAR
-var colorLand = 'grey' //use php_api_object.VAR
-var colorGraticule = 'transparent' //use php_api_object.VAR
-var colorCountry = 'green' //use php_api_object.VAR
-var colorCountryNotVisited = 'white' //use php_api_object.VAR
-var colorCountryVisited = 'red' //use php_api_object.VAR
-var link = ''
-var currentpostfield = ["704", "116", "764", "76", "604", "484", "840"] //use php_api_object.VAR
 
+var colorWater = 'rgba(31, 58, 147, 0.8)' //use php_api_object.VAR
+var colorLandBorder = 'black' //use php_api_object.VAR
+var colorLand = 'rgba(235, 151, 78, 0.8)' //use php_api_object.VAR
+var colorGraticule = 'transparent' //use php_api_object.VAR
+var colorCountry = 'rgba(30, 130, 76, 1.0)' //use php_api_object.VAR
+var colorCountryNotVisited = 'white' //use php_api_object.VAR
+var colorCountryVisited = 'rgba(30, 130, 76, 0.8)' //use php_api_object.VAR
+var link = ''
+var currentpostfield = php_api_object.countries_visited
 function mouseOver() {
   stopRotation()
 }
@@ -38,19 +37,21 @@ function onCountryClick(){
     })
   }
 
-  if (currentpostfield.includes(country.id) == true) {
+  if (currentCountry && currentpostfield.includes(country.id) == true) {
     var link = siteURL + "/" + pageSlug + "/" + (country && country.name)
-  	window.open(link)
+	var modalId = "#country_info_of_" + (country && country.id)
+  	//if chosen to open link then window.open(link), otherwise
+  	jQuery(modalId).modal()//Insert a View with modals ID'd to country_info_of_[types field='country-json-id' output='raw'][/types]
   }
 }
 
 
 function enter(country) {
-  //mouseOver()
+  mouseOver()
 }
 
 function leave(country) {
-  //mouseOut()
+  mouseOut()
 }
 
 //
@@ -89,8 +90,8 @@ function setAngles() {
 }
 
 function scale() {
-  width = document.documentElement.clientWidth
-  height = document.documentElement.clientHeight
+  width = jQuery(document).width()-100
+  height = jQuery(window).height()-100
   canvas.attr('width', width).attr('height', height)
   projection
     .scale((scaleFactor * Math.min(width, height)) / 2)
