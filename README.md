@@ -18,7 +18,7 @@ Freely interpreted from [Planteray JS](http://planetaryjs.com) and [D3.js](https
 
 Can be activated like any other WordPress Plugin saving the hassle of custom coding such templates.
 
-See a Demo [here](https://www.tukutoi.com/globe-maps/).
+See a Demo [here](https://www.tukutoi.com/showcase/d3js-globe/) and [here](https://www.tukutoi.com/showcase/single-svg-country-map/).
 
 ### NOTE 
 When downloading master zip from GIT you need to unzip that and rename it (remove the master-appendix). Then, rezip the folder and upload that as the plugin.
