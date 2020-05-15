@@ -1,24 +1,8 @@
-# D3-Globe-Rendering-for-WordPress
-A WordPress plugin rendering with one ShortCode a Spinning, Draggable, Pannable, Zoomable, Clickable D3.js Globe - with country borders and more.
+WordPress D3-Globe brings D3 Power to WordPress without the need of any JS Knowledge. The WordPress D3-Globe Plugin renders, as the name suggests, an in interactive  Globe, using simple WordPress ShortCodes.
 
-Invoke the globe anywhere in Text Editor with `[D3-Globe]` ShortCode.
-Invoke a single Country or a World Map in SVG Format (Not 3d) with the ShortCode `[SVG-Single-Country]`.
-It supportes these attributes at the moment
-```
-'country' => '',//Country code
-'active_areas' => '',/Area Code commaseparated
-'active_areas_css' => '',//Valid CSS fill:red;
-'active_areas_hover_css' => '',//Valid CSS fill:red;
-```
-The plugin incorporates mapes for southeastasia (Thailand, Cambodia, Vietnam) and a few others at the moment, country code can be found [here](https://gist.githubusercontent.com/mbostock/4090846/raw/07e73f3c2d21558489604a0bc434b3a5cf41a867/world-country-names.tsv). 
-Areacodes at themoent must be retrieved from the console.
-For more SVG maps I currently use [this source](https://mapsvg.com/)
+Using WordPress ShortCodes means, the WordPress D3-Globe Plugin can render the Interactive Globe or country particular map anywhere you want on a Website.
 
-Freely interpreted from [Planteray JS](http://planetaryjs.com) and [D3.js](https://d3js.org) based tools.
+You can read more on [the Documentation](https://www.tukutoi.com/doc/?wpv-wpcf-doc-type=&wpv_post_search=WordPress+D3+Globe) how to use the ShortCodes to display the Globe or map using WordPress D3-Globe Plugin on your website. 
 
-Can be activated like any other WordPress Plugin saving the hassle of custom coding such templates.
+How this could look like can be seen [here](https://www.tukutoi.com/showcase/d3js-globe/) and [here](https://www.tukutoi.com/showcase/single-svg-country-map/).
 
-See a Demo [here](https://www.tukutoi.com/showcase/d3js-globe/) and [here](https://www.tukutoi.com/showcase/single-svg-country-map/).
-
-### NOTE 
-When downloading master zip from GIT you need to unzip that and rename it (remove the master-appendix). Then, rezip the folder and upload that as the plugin.
