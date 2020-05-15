@@ -63,7 +63,7 @@ function load_tmg_customized_script() {
  
 	// Localize the script with new data
 	wp_localize_script( 'maps_custom_globus', 'php_api_object', js_php_api() );
-	wp_enqueue_script( 'maps_custom_globus', plugin_dir_url( 'D3-Globe-Rendering-for-WordPress.php' ) . '/D3-Globe-Rendering-for-WordPress/maps-globus-custom.js', array("jquery"), 1.0, false );
+	wp_enqueue_script( 'maps_custom_globus', plugin_dir_url( 'D3-Globe-Rendering-for-WordPress.php' ) . '/D3-Globe-Rendering-for-WordPress/maps-globus-custom.js', array("jquery"), 1.1, false );
 
 }
 
@@ -116,7 +116,7 @@ function svg_single_country( $atts ) {
 	$atts = shortcode_atts( array(
 		'country' => '',
 		'country_css' => '',
-		'borders_css' => '',
+		'borders_color' => '',
 		'active_areas' => '',//we need comma separated values like 1,2,3
 		'active_areas_css' => '',
 		'active_areas_hover_css' => '',
@@ -128,7 +128,10 @@ function svg_single_country( $atts ) {
 	), $atts, 'bartag' );
 
 	$svg = load_single_country_svg($atts['country']);
+	$svg .= '<style>svg {'. $atts['country_css'] .'}</style>';
+	$svg .= '<style>svg {stroke:' . $atts['borders_color'] . ';}</style>';
 	$svg .= apply_static_styles($atts['active_areas'], $atts['active_areas_css']);
 	$svg .= apply_hover_styles($atts['active_areas'], $atts['active_areas_hover_css']);
+	$out = '<img src="' . plugin_dir_url( 'D3-Globe-Rendering-for-WordPress.php' ) . '/D3-Globe-Rendering-for-WordPress/country-svg-maps/' . match_country_code_svg($atts['country']) . '.svg' . '" style="width: ' . $atts['width'] . '; height: ' . $atts['height'] . ';">';
 	return $svg;
 }
