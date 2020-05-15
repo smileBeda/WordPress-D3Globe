@@ -4,11 +4,11 @@ var pageSlug = php_api_object.page_slug
 var rotationDelay = 2000
 // scale of the globe (not the canvas element)
 var scaleFactor = 0.6
-var w = jQuery(window).width()
-var h = jQuery(window).height()
+var w = document.getElementById('globe-container').offsetWidth - (document.getElementById('globe-container').offsetWidth / 100 *10)
+var h = document.getElementById('globe-container').offsetHeight - (document.getElementById('globe-container').offsetWidth / 100 *10)
 var scl = Math.min(w, h)/2.8; 
 // autorotation speed
-var degPerSec = 6
+var degPerSec = 12
 // start angles
 var angles = { x: -20, y: 40, z: 0}
 
@@ -70,7 +70,7 @@ var r0 // Projection rotation as Euler angles at start.
 var q0 // Projection rotation as versor at start.
 var lastTime = d3.now()
 var degPerMs = degPerSec / 1000
-var width, height
+
 var land, countries
 var countryList
 var autorotate, now, diff, roation
@@ -90,12 +90,12 @@ function setAngles() {
 }
 
 function scale() {
-  width = jQuery(document).width()-100
-  height = jQuery(window).height()-100
-  canvas.attr('width', width).attr('height', height)
+  width = w
+  height = h
+  canvas.attr('width', w).attr('height', h)
   projection
-    .scale((scaleFactor * Math.min(width, height)) / 2)
-    .translate([width / 2, height / 2])
+    .scale((scaleFactor * Math.min(w, h)) / 2)
+    .translate([w / 2, h / 2])
   render()
 }
 
@@ -128,7 +128,7 @@ function dragended() {
 
 function render() {
 
-  context.clearRect(0, 0, width, height)
+  context.clearRect(0, 0, w, h)
 
   fill(water, colorWater)
   //stroke(graticule, colorGraticule)
