@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WordPress D3Globe
-Plugin URI: https://www.tukutoi.com
+Plugin URI: https://www.tukutoi.com/program/d3-globe-rendering-for-wordpress/
 Author: TukuToi
 Description: Spinning, Draggable, Pannable & Zoomable Globe with clickable & hoverable countries
 Version: 1.2
-Author URI: https://www.tukutoi.com
+Author URI: https://www.tukutoi.com/author/Beda_Schmid/
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: WordPress-D3Globe
