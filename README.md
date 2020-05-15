@@ -1,3 +1,5 @@
+# WordPress-D3Globe
+
 WordPress D3-Globe brings D3 Power to WordPress without the need of any JS Knowledge. The WordPress D3-Globe Plugin renders, as the name suggests, an in interactive  Globe, using simple WordPress ShortCodes.
 
 Using WordPress ShortCodes means, the WordPress D3-Globe Plugin can render the Interactive Globe or country particular map anywhere you want on a Website.
