@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: D3 Globe Rendering for WordPress
-Plugin URI: https://github.com/TukuTuru/
-Author: bedas
+Plugin Name: WordPress D3Globe
+Plugin URI: https://www.tukutoi.com
+Author: TukuToi
 Description: Spinning, Draggable, Pannable & Zoomable Globe with clickable & hoverable countries
 Version: 1.2
-Author URI: https://wordpress.org/support/profile/bedas
+Author URI: https://www.tukutoi.com
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Text Domain: D3-Globe-Rendering-for-WordPress
+Text Domain: WordPress-D3Globe
 */
 
 //Call some scripts
