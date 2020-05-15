@@ -1,4 +1,4 @@
-# WordPress-D3Globe
+# WordPress D3 Globe
 
 WordPress D3-Globe brings D3 Power to WordPress without the need of any JS Knowledge. The WordPress D3-Globe Plugin renders, as the name suggests, an in interactive  Globe, using simple WordPress ShortCodes.
 
