@@ -59,7 +59,7 @@ function leave(country) {
 //
 
 var current = d3.select('#current')
-var canvas = d3.select('#globe')
+var canvas = d3.select('#globe-container')
 var context = canvas.node().getContext('2d')
 var water = {type: 'Sphere'}
 var projection = d3.geoOrthographic().precision(0.1)

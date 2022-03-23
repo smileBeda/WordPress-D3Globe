@@ -139,7 +139,7 @@ function countries_visited(){
 
 function return_tmg_canvas() {
 
-	$canvas_html = "<canvas id='globe'></canvas>";
+	$canvas_html = "<canvas id='globe-container'></canvas>";
 
 	return $canvas_html;
 
